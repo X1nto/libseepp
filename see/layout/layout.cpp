@@ -18,6 +18,7 @@ void multichild_layout::update()
     {
         child->update();
     }
+    view::update();
 }
 
 

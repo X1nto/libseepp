@@ -34,7 +34,7 @@ public:
 template<class View>
 multichild_layout& operator<<(multichild_layout& layout, View& view)
 {
-    child_t child_ptr = std::make_unique<View>(view);
+    child_t child_ptr(&view);
     layout.children.push_back(std::move(child_ptr));
     return layout;
 }

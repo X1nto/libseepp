@@ -20,22 +20,24 @@ void column::draw(graphics::canvas& canvas, const graphics::position& position)
 
 graphics::size column::measure_size()
 {
-    graphics::size largest {};
+    graphics::size size {};
 
-    for (const layout::child_t& child : children)
+    for (int i = 0; i < children.size(); i++)
     {
-        const graphics::size measured = child->measured_size();
-        if (measured.width > largest.width)
+        const graphics::size measured = children[i]->measured_size();
+        size.height += measured.height;
+        if (measured.width > size.width)
         {
-            largest.width = measured.width;
+            size.width = measured.width;
         }
-        if (measured.height > largest.height)
+
+        if (i != children.size() - 1)
         {
-            largest.height = measured.height;
+            size.height += spacing;
         }
     }
 
-    return largest;
+    return size;
 }
 
 }

@@ -22,16 +22,18 @@ graphics::size row::measure_size()
 {
     graphics::size largest {};
 
-    for (const layout::child_t& child : children)
+    for (int i = 0; i < children.size(); i++)
     {
-        const graphics::size measured = child->measured_size();
-        if (measured.width > largest.width)
-        {
-            largest.width = measured.width;
-        }
+        const graphics::size measured = children[i]->measured_size();
+        largest.width += measured.width;
         if (measured.height > largest.height)
         {
             largest.height = measured.height;
+        }
+
+        if (i != children.size() - 1)
+        {
+            largest.width += spacing;
         }
     }
 
