@@ -14,7 +14,8 @@ set(see_graphics_src
         graphics/size.h graphics/size.cpp)
 
 set(see_foundation_src
-        foundation/column.h foundation/column.cpp)
+        foundation/column.h foundation/column.cpp
+        foundation/row.h foundation/row.cpp)
 
 add_library(see ${see_layout_src} ${see_graphics_src} ${see_foundation_src})
 target_include_directories(see PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>)
