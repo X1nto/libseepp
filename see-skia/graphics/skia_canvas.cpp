@@ -20,7 +20,7 @@ void skia_canvas::draw_rect(const see::graphics::position& position,
     };
     SkPaint paint;
     paint.setColor(skia_color(color));
-    canvas->drawRect(rect, paint);
+    canvas.drawRect(rect, paint);
 }
 
 void skia_canvas::draw_circle(
@@ -34,7 +34,7 @@ void skia_canvas::draw_circle(
     };
     SkPaint paint;
     paint.setColor(skia_color(color));
-    canvas->drawCircle(center, radius, paint);
+    canvas.drawCircle(center, radius, paint);
 }
 
 void skia_canvas::draw_oval(const see::graphics::position& position,
@@ -49,14 +49,14 @@ void skia_canvas::draw_oval(const see::graphics::position& position,
     };
     SkPaint paint;
     paint.setColor(skia_color(color));
-    canvas->drawOval(oval, paint);
+    canvas.drawOval(oval, paint);
 }
 
-skia_canvas::skia_canvas(std::unique_ptr<SkCanvas>& _canvas) : canvas(std::move(_canvas)) {}
+skia_canvas::skia_canvas(SkCanvas& _canvas) : canvas(_canvas) {}
 
 void skia_canvas::clear()
 {
-    canvas->clear(skia_color(see::graphics::color(255, 255, 255)));
+    canvas.clear(skia_color(see::graphics::color(255, 255, 255)));
 }
 
 }

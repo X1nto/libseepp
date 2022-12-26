@@ -2,8 +2,8 @@
 // Created by Xinto on 25.12.2022.
 //
 
-#ifndef LIBSEE_SKIA_COLOR_H
-#define LIBSEE_SKIA_COLOR_H
+#ifndef SEE_SKIA_GRAPHICS_COLOR_H
+#define SEE_SKIA_GRAPHICS_COLOR_H
 
 #include "skia/include/core/SkColor.h"
 
@@ -22,4 +22,4 @@ constexpr SkColor skia_color(const see::graphics::color& color)
 
 }
 
-#endif //LIBSEE_SKIA_COLOR_H
+#endif //SEE_SKIA_GRAPHICS_COLOR_H

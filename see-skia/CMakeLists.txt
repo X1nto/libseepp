@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(see_skia_graphics_src
         graphics/skia_canvas.h graphics/skia_canvas.cpp
-        graphics/skia_color.h graphics/skia_color.cpp)
+        graphics/skia_color.h graphics/skia_color.cpp window/skia_glfw_window.cpp window/skia_glfw_window.h)
 
 add_library(see_skia ${see_skia_graphics_src})
 target_link_libraries(see_skia PUBLIC see)

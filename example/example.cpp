@@ -2,27 +2,16 @@
 // Created by Xinto on 25.12.2022.
 //
 
-#include "GLFW/glfw3.h"
-
-#define SK_GL
-#include "skia/include/gpu/GrBackendSurface.h"
-#include "skia/include/gpu/GrDirectContext.h"
-#include "skia/include/gpu/gl/GrGLInterface.h"
-#include "skia/include/core/SkCanvas.h"
-#include "skia/include/core/SkColorSpace.h"
-#include "skia/include/core/SkSurface.h"
-#undef SK_GL
-
-#include "see-skia/graphics/skia_canvas.h"
+#include "see/layout/view.h"
 #include "see/foundation/column.h"
 #include "see/foundation/row.h"
+#include "see-skia/window/skia_glfw_window.h"
 
 class rect_view : public see::layout::view
 {
     const see::graphics::color& _color;
 public:
     explicit rect_view(const see::graphics::color& color) : _color(color) {};
-
     void draw(see::graphics::canvas &canvas, const see::graphics::position &position) override
     {
         canvas.draw_rect(position, size, _color);
@@ -40,73 +29,25 @@ public:
 
 int main()
 {
-    GLFWwindow* window;
+    see::skia::window::skia_glfw_window window;
+    window.width = 960;
+    window.height = 480;
+    window.title = "Skia See";
 
-    if (!glfwInit())
-    {
-        return -1;
-    }
-
-    window = glfwCreateWindow(960, 480, "Test", nullptr, nullptr);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    glfwMakeContextCurrent(window);
-
-    auto glInterface = GrGLMakeNativeInterface();
-    GrDirectContext* context = GrDirectContext::MakeGL(glInterface).release();
-    GrGLFramebufferInfo framebufferInfo
-    {
-        .fFBOID = 0,
-        .fFormat = GL_RGBA8
-    };
-
-    SkColorType skColorType = kRGBA_8888_SkColorType;
-    GrBackendRenderTarget renderTarget(960, 480, 0, 0, framebufferInfo);
-    SkSurface* skSurface = SkSurface::MakeFromBackendRenderTarget(
-            context, renderTarget, kBottomLeft_GrSurfaceOrigin, skColorType,
-            nullptr,nullptr).release();
-    if (!skSurface)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    glfwSwapInterval(1);
-    SkCanvas* skCanvas = skSurface->getCanvas();
-
-    std::unique_ptr<SkCanvas> skCanvas_ptr(skCanvas);
-    see::skia::graphics::skia_canvas canvas(skCanvas_ptr);
-
+    see::foundation::column col;
+    col.spacing = 10;
     see::foundation::row row;
     row.spacing = 10;
-    see::foundation::column column;
-    column.spacing = 10;
-    rect_view bluev = rect_view(see::graphics::color::BLUE);
-    rect_view redv = rect_view(see::graphics::color::RED);
-    rect_view greenv = rect_view(see::graphics::color::GREEN);
 
-    row << bluev << redv << greenv;
-    column << row << row;
+    rect_view red = rect_view(see::graphics::color::RED);
+    rect_view green = rect_view(see::graphics::color::GREEN);
+    rect_view blue = rect_view(see::graphics::color::BLUE);
 
-    while (!glfwWindowShouldClose(window)) {
-        glfwWaitEvents();
+    row << red << green << blue;
+    col << row << row << row;
 
-        column.update();
-        column.draw(canvas, see::graphics::position{0, 0});
+    window.view = std::unique_ptr<see::foundation::column>(&col);
 
-        context->flush();
-
-        glfwSwapBuffers(window);
-    }
-
-    delete skSurface;
-    delete context;
-
-    glfwDestroyWindow(window);
-    glfwTerminate();
+    window.run();
     return 0;
 }
