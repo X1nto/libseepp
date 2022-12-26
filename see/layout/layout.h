@@ -2,8 +2,8 @@
 // Created by Xinto on 24.12.2022.
 //
 
-#ifndef LIBSEE_LAYOUT_H
-#define LIBSEE_LAYOUT_H
+#ifndef SEE_LAYOUT_LAYOUT_H
+#define SEE_LAYOUT_LAYOUT_H
 
 #include <memory>
 #include <vector>
@@ -41,4 +41,4 @@ multichild_layout& operator<<(multichild_layout& layout, View& view)
 
 }
 
-#endif //LIBSEE_LAYOUT_H
+#endif //SEE_LAYOUT_LAYOUT_H

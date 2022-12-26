@@ -2,10 +2,10 @@
 // Created by Xinto on 25.12.2022.
 //
 
-#ifndef LIBSEE_COLUMN_H
-#define LIBSEE_COLUMN_H
+#ifndef SEE_FOUNDATION_COLUMN_H
+#define SEE_FOUNDATION_COLUMN_H
 
-#include "../layout/layout.h"
+#include "see/layout/layout.h"
 
 namespace see::foundation
 {
@@ -22,4 +22,4 @@ public:
 
 }
 
-#endif //LIBSEE_COLUMN_H
+#endif //SEE_FOUNDATION_COLUMN_H

@@ -2,8 +2,8 @@
 // Created by Xinto on 24.12.2022.
 //
 
-#ifndef SEE_CANVAS_H
-#define SEE_CANVAS_H
+#ifndef SEE_GRAPHICS_CANVAS_H
+#define SEE_GRAPHICS_CANVAS_H
 
 #include "position.h"
 #include "size.h"
@@ -26,4 +26,4 @@ public:
 
 }
 
-#endif //SEE_CANVAS_H
+#endif //SEE_GRAPHICS_CANVAS_H

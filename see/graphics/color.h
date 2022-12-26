@@ -2,8 +2,8 @@
 // Created by Xinto on 24.12.2022.
 //
 
-#ifndef LIBSEE_COLOR_H
-#define LIBSEE_COLOR_H
+#ifndef SEE_GRAPHICS_COLOR_H
+#define SEE_GRAPHICS_COLOR_H
 
 #include <cstdint>
 
@@ -53,4 +53,4 @@ struct color
 
 }
 
-#endif //LIBSEE_COLOR_H
+#endif //SEE_GRAPHICS_COLOR_H

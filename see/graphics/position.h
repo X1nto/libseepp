@@ -2,8 +2,8 @@
 // Created by Xinto on 24.12.2022.
 //
 
-#ifndef LIBSEE_POSITION_H
-#define LIBSEE_POSITION_H
+#ifndef SEE_GRAPHICS_POSITION_H
+#define SEE_GRAPHICS_POSITION_H
 
 namespace see::graphics
 {
@@ -68,4 +68,4 @@ constexpr bool operator>=(const position& lhs, const position& rhs)
 
 }
 
-#endif //LIBSEE_POSITION_H
+#endif //SEE_GRAPHICS_POSITION_H

@@ -2,8 +2,8 @@
 // Created by Xinto on 24.12.2022.
 //
 
-#ifndef LIBSEE_SIZE_H
-#define LIBSEE_SIZE_H
+#ifndef SEE_GRAPHICS_SIZE_H
+#define SEE_GRAPHICS_SIZE_H
 
 namespace see::graphics
 {
@@ -68,4 +68,4 @@ constexpr bool operator>=(const size& lhs, const size& rhs)
 
 }
 
-#endif //LIBSEE_SIZE_H
+#endif //SEE_GRAPHICS_SIZE_H

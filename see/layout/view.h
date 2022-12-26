@@ -2,12 +2,12 @@
 // Created by Xinto on 24.12.2022.
 //
 
-#ifndef SEE_VIEW_H
-#define SEE_VIEW_H
+#ifndef SEE_LAYOUT_VIEW_H
+#define SEE_LAYOUT_VIEW_H
 
-#include "../graphics/canvas.h"
-#include "../graphics/position.h"
-#include "../graphics/size.h"
+#include "see/graphics/canvas.h"
+#include "see/graphics/position.h"
+#include "see/graphics/size.h"
 
 namespace see::layout
 {
@@ -31,4 +31,4 @@ protected:
 
 }
 
-#endif //SEE_VIEW_H
+#endif //SEE_LAYOUT_VIEW_H
