@@ -29,13 +29,16 @@ public:
     children_t children;
 
     void update() override;
+
+    constexpr void push_child(const child_t& child)
+    {
+        children.push_back(child);
+    };
 };
 
-
-template<class View>
-multichild_layout& operator<<(multichild_layout& layout, std::shared_ptr<View> view)
+constexpr multichild_layout& operator<<(multichild_layout& layout, const child_t& child)
 {
-    layout.children.push_back(view);
+    layout.push_child(child);
     return layout;
 }
 

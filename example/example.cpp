@@ -40,14 +40,17 @@ int main()
     auto row = std::make_shared<see::foundation::row>();
     row->spacing = 10;
 
+    window.view = col;
+
     auto red = std::make_shared<rect_view>(see::graphics::color::RED);
     auto green = std::make_shared<rect_view>(see::graphics::color::GREEN);
     auto blue = std::make_shared<rect_view>(see::graphics::color::BLUE);
 
     (*row) << red << green << blue;
-    (*col) << row << row << row;
-
-    window.view = col;
+    for (int i = 0; i < 5; i++)
+    {
+        col->push_child(row);
+    }
 
     window.run();
     return 0;
