@@ -6,6 +6,7 @@
 #include "see/foundation/column.h"
 #include "see/foundation/row.h"
 #include "see-skia/window/skia_glfw_window.h"
+#include <memory>
 
 class rect_view : public see::layout::view
 {
@@ -34,19 +35,19 @@ int main()
     window.height = 480;
     window.title = "Skia See";
 
-    see::foundation::column col;
-    col.spacing = 10;
-    see::foundation::row row;
-    row.spacing = 10;
+    auto col = std::make_shared<see::foundation::column>();
+    col->spacing = 10;
+    auto row = std::make_shared<see::foundation::row>();
+    row->spacing = 10;
 
-    rect_view red = rect_view(see::graphics::color::RED);
-    rect_view green = rect_view(see::graphics::color::GREEN);
-    rect_view blue = rect_view(see::graphics::color::BLUE);
+    auto red = std::make_shared<rect_view>(see::graphics::color::RED);
+    auto green = std::make_shared<rect_view>(see::graphics::color::GREEN);
+    auto blue = std::make_shared<rect_view>(see::graphics::color::BLUE);
 
-    row << red << green << blue;
-    col << row << row << row;
+    (*row) << red << green << blue;
+    (*col) << row << row << row;
 
-    window.view = std::unique_ptr<see::foundation::column>(&col);
+    window.view = col;
 
     window.run();
     return 0;

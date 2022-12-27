@@ -24,6 +24,8 @@ public:
     virtual void run() = 0;
     virtual void update() = 0;
     virtual void stop() = 0;
+protected:
+    virtual void render() = 0;
 };
 
 }

@@ -12,7 +12,7 @@
 namespace see::layout
 {
 
-using child_t = std::unique_ptr<view>;
+using child_t = std::shared_ptr<view>;
 using children_t = std::vector<child_t>;
 
 class singlechild_layout : public view
@@ -31,11 +31,11 @@ public:
     void update() override;
 };
 
+
 template<class View>
-multichild_layout& operator<<(multichild_layout& layout, View& view)
+multichild_layout& operator<<(multichild_layout& layout, std::shared_ptr<View> view)
 {
-    child_t child_ptr(&view);
-    layout.children.push_back(std::move(child_ptr));
+    layout.children.push_back(view);
     return layout;
 }
 

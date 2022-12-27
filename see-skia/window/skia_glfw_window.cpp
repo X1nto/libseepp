@@ -17,6 +17,8 @@ void skia_glfw_window::run()
     glfwMakeContextCurrent(window);
     glfwSetWindowUserPointer(window, this);
     glfwSetWindowSizeCallback(window, on_window_resize);
+    glfwSetFramebufferSizeCallback(window, on_framebuffer_resize);
+
     glfwSwapInterval(1);
 
     sk_sp<const GrGLInterface> gr_gl_interface = GrGLMakeNativeInterface();
@@ -26,14 +28,7 @@ void skia_glfw_window::run()
 
     while (!glfwWindowShouldClose(window))
     {
-        canvas->clear();
-
-        view->update();
-        view->draw(*canvas, see::graphics::position {0, 0});
-
-        gr_context->flush();
-
-        glfwSwapBuffers(window);
+        render();
         glfwPollEvents();
     }
 }
@@ -62,12 +57,16 @@ void skia_glfw_window::stop()
     glfwDestroyWindow(window);
 }
 
-void skia_glfw_window::on_window_resize(GLFWwindow* window, int width, int height)
+void skia_glfw_window::render()
 {
-    auto* glwindow = static_cast<skia_glfw_window*>(glfwGetWindowUserPointer(window));
-    glwindow->width = width;
-    glwindow->height = height;
-    glwindow->init_sksurface(width, height);
+    canvas->clear();
+
+    view->update();
+    view->draw(*canvas, see::graphics::position {0, 0});
+
+    gr_context->flush();
+
+    glfwSwapBuffers(window);
 }
 
 void skia_glfw_window::init_sksurface(int width, int height)
@@ -86,6 +85,26 @@ void skia_glfw_window::init_sksurface(int width, int height)
             nullptr, nullptr);
 
     canvas = std::make_unique<see::skia::graphics::skia_canvas>(*sk_surface->getCanvas());
+}
+
+void skia_glfw_window::on_window_resize(GLFWwindow* window, int width, int height)
+{
+    auto* glwindow = get_this_ptr(window);
+    glwindow->width = width;
+    glwindow->height = height;
+    glwindow->init_sksurface(width, height);
+}
+
+void skia_glfw_window::on_framebuffer_resize(GLFWwindow* window, int width, int height)
+{
+    skia_glfw_window* glwindow = get_this_ptr(window);
+    glViewport(0, 0, width, height);
+    glwindow->render();
+}
+
+skia_glfw_window* skia_glfw_window::get_this_ptr(GLFWwindow* window)
+{
+    return static_cast<skia_glfw_window*>(glfwGetWindowUserPointer(window));
 }
 
 }

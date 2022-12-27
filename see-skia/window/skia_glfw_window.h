@@ -25,8 +25,8 @@ namespace see::skia::window
 class skia_glfw_window : public see::window::window
 {
     GLFWwindow* window = nullptr;
-    sk_sp<GrDirectContext> gr_context = nullptr;
-    sk_sp<SkSurface> sk_surface = nullptr;
+    sk_sp<GrDirectContext> gr_context;
+    sk_sp<SkSurface> sk_surface;
 
     std::unique_ptr<see::skia::graphics::skia_canvas> canvas;
 public:
@@ -36,9 +36,13 @@ public:
     void run() override;
     void update() override;
     void stop() override;
+protected:
+    void render() override;
 private:
     void init_sksurface(int width, int height);
     static void on_window_resize(GLFWwindow* window, int width, int height);
+    static void on_framebuffer_resize(GLFWwindow* window, int width, int height);
+    static skia_glfw_window* get_this_ptr(GLFWwindow* window);
 };
 
 }
