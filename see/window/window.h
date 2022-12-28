@@ -6,7 +6,8 @@
 #define SEE_WINDOW_WINDOW_H
 
 #include "see/layout/view.h"
-#include "see/layout/layout.h"
+#include "see/graphics/size_int.h"
+#include "window_view.h"
 
 namespace see::window
 {
@@ -15,9 +16,8 @@ class window
 {
 public:
     std::string title;
-    int width;
-    int height;
-    see::layout::child_t view;
+    see::graphics::size_int size;
+    std::shared_ptr<window_view> view = std::make_shared<window_view>();
 
     virtual ~window() = default;
 

@@ -13,12 +13,15 @@ class rect_view : public see::layout::view
     const see::graphics::color& _color;
 public:
     explicit rect_view(const see::graphics::color& color) : _color(color) {};
-    void draw(see::graphics::canvas &canvas, const see::graphics::position &position) override
+
+    void draw(
+            see::graphics::canvas &canvas,
+            const see::graphics::position &position) const override
     {
-        canvas.draw_rect(position, size, _color);
+        canvas.draw_rect(position, constrained_size, _color);
     }
 
-    see::graphics::size measure_size() override
+    see::graphics::size measure_size() const override
     {
         return see::graphics::size
         {
@@ -31,8 +34,10 @@ public:
 int main()
 {
     see::skia::window::skia_glfw_window window;
-    window.width = 960;
-    window.height = 480;
+    window.size = {
+        .width = 960,
+        .height = 480,
+    };
     window.title = "Skia See";
 
     auto col = std::make_shared<see::foundation::column>();
@@ -40,18 +45,24 @@ int main()
     auto row = std::make_shared<see::foundation::row>();
     row->spacing = 10;
 
-    window.view = col;
+    window.view->child = col;
 
     auto red = std::make_shared<rect_view>(see::graphics::color::RED);
     auto green = std::make_shared<rect_view>(see::graphics::color::GREEN);
     auto blue = std::make_shared<rect_view>(see::graphics::color::BLUE);
 
     (*row) << red << green << blue;
+    for (const auto& item: row->children)
+    {
+        item->size.width = see::layout::view_size::fill;
+    }
     for (int i = 0; i < 5; i++)
     {
         col->push_child(row);
     }
 
     window.run();
+    window.stop();
+
     return 0;
 }

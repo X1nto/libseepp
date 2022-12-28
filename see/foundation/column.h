@@ -15,9 +15,9 @@ class column : public layout::multichild_layout
 public:
     float spacing = 0;
 
-    graphics::size measure_size() override;
+    graphics::size measure_size() const override;
 
-    void draw(graphics::canvas& canvas, const graphics::position& position) override;
+    void draw(graphics::canvas& canvas, const graphics::position& position) const override;
 };
 
 }

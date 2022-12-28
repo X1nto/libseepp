@@ -4,12 +4,14 @@
 #include "skia_glfw_window.h"
 #include "see-skia/graphics/skia_canvas.h"
 
+#include <iostream>
+
 namespace see::skia::window
 {
 
 void skia_glfw_window::run()
 {
-    window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+    window = glfwCreateWindow(size.width, size.height, title.c_str(), nullptr, nullptr);
     if (!window)
     {
         throw std::runtime_error("failed to create the GLFW window");
@@ -18,11 +20,14 @@ void skia_glfw_window::run()
     glfwSetWindowUserPointer(window, this);
     glfwSetWindowSizeCallback(window, on_window_resize);
     glfwSetFramebufferSizeCallback(window, on_framebuffer_resize);
+    glfwSetErrorCallback([](int code, const char *c){
+        std::cout << "GLFW Error: " << code << ", " << c;
+    });
 
     glfwSwapInterval(1);
 
     sk_sp<const GrGLInterface> gr_gl_interface = GrGLMakeNativeInterface();
-    gr_context = GrDirectContext::MakeGL(gr_gl_interface);
+    gr_context = GrDirectContext::MakeGL(gr_gl_interface).release();
 
     update();
 
@@ -43,13 +48,12 @@ skia_glfw_window::skia_glfw_window()
 
 skia_glfw_window::~skia_glfw_window()
 {
-    glfwDestroyWindow(window);
     glfwTerminate();
 }
 
 void skia_glfw_window::update()
 {
-    init_sksurface(width, height);
+    init_sksurface(size.width, size.height);
 }
 
 void skia_glfw_window::stop()
@@ -78,11 +82,11 @@ void skia_glfw_window::init_sksurface(int width, int height)
     SkColorType skColorType = kRGBA_8888_SkColorType;
     GrBackendRenderTarget renderTarget(width, height, 0, 0, framebufferInfo);
     sk_surface = SkSurface::MakeFromBackendRenderTarget(
-            gr_context.get(),
+            gr_context,
             renderTarget,
             kBottomLeft_GrSurfaceOrigin,
             skColorType,
-            nullptr, nullptr);
+            nullptr, nullptr).release();
 
     canvas = std::make_unique<see::skia::graphics::skia_canvas>(*sk_surface->getCanvas());
 }
@@ -90,8 +94,8 @@ void skia_glfw_window::init_sksurface(int width, int height)
 void skia_glfw_window::on_window_resize(GLFWwindow* window, int width, int height)
 {
     auto* glwindow = get_this_ptr(window);
-    glwindow->width = width;
-    glwindow->height = height;
+    glwindow->size.width = width;
+    glwindow->size.height = height;
     glwindow->init_sksurface(width, height);
 }
 
@@ -99,6 +103,10 @@ void skia_glfw_window::on_framebuffer_resize(GLFWwindow* window, int width, int 
 {
     skia_glfw_window* glwindow = get_this_ptr(window);
     glViewport(0, 0, width, height);
+
+    glwindow->view->size.width = static_cast<float>(width);
+    glwindow->view->size.height = static_cast<float>(height);
+
     glwindow->render();
 }
 

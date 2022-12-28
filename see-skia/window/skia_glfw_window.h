@@ -25,8 +25,8 @@ namespace see::skia::window
 class skia_glfw_window : public see::window::window
 {
     GLFWwindow* window = nullptr;
-    sk_sp<GrDirectContext> gr_context;
-    sk_sp<SkSurface> sk_surface;
+    GrDirectContext* gr_context = nullptr;
+    SkSurface* sk_surface = nullptr;
 
     std::unique_ptr<see::skia::graphics::skia_canvas> canvas;
 public:

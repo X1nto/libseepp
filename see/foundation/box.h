@@ -25,9 +25,9 @@ class box : public see::layout::multichild_layout
 public:
     box_alignment alignment = box_alignment::top_start;
 
-    void draw(see::graphics::canvas& canvas, const see::graphics::position& position) override;
+    void draw(see::graphics::canvas& canvas, const see::graphics::position& position) const override;
 
-    see::graphics::size measure_size() override;
+    see::graphics::size measure_size() const override;
 };
 
 
