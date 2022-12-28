@@ -2,10 +2,8 @@
 // Created by Xinto on 25.12.2022.
 //
 
-#include "see/layout/view.h"
-#include "see/foundation/column.h"
-#include "see/foundation/row.h"
-#include "see-skia/window/skia_glfw_window.h"
+#include "see/see.h"
+#include "see-skia/see_skia.h"
 #include <memory>
 
 class rect_view : public see::layout::view

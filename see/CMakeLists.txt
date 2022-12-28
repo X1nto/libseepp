@@ -23,5 +23,13 @@ set(see_window_src
         window/window.h window/window.cpp
         window/window_view.h window/window_view.cpp)
 
-add_library(see ${see_layout_src} ${see_graphics_src} ${see_foundation_src} ${see_window_src})
+set(see_src
+        see.h)
+
+add_library(see
+        ${see_layout_src}
+        ${see_graphics_src}
+        ${see_foundation_src}
+        ${see_window_src}
+        ${see_src})
 target_include_directories(see PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>)
