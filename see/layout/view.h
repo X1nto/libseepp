@@ -17,7 +17,7 @@ namespace see::layout
 struct view_size : see::graphics::size
 {
     constexpr static float self = -1;
-    constexpr static float fill = -2;
+    constexpr static float parent = -2;
 };
 
 class layout;

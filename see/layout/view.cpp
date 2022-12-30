@@ -9,8 +9,8 @@ namespace see::layout
 
 graphics::size view::constrain_size() const
 {
-    const bool is_width_parent = size.width == view_size::fill;
-    const bool is_height_parent = size.height == view_size::fill;
+    const bool is_width_parent = size.width == view_size::parent;
+    const bool is_height_parent = size.height == view_size::parent;
 
     const bool is_width_self = size.width == view_size::self;
     const bool is_height_self = size.height == view_size::self;

@@ -52,7 +52,7 @@ int main()
     (*row) << red << green << blue;
     for (const auto& item: row->children)
     {
-        item->size.width = see::layout::view_size::fill;
+        item->size.width = see::layout::view_size::parent;
     }
     for (int i = 0; i < 5; i++)
     {
