@@ -8,7 +8,8 @@ set(see_skia_graphics_src
         graphics/skia_color.h graphics/skia_color.cpp)
 
 set(see_skia_window_src
-        window/skia_glfw_window.h window/skia_glfw_window.cpp)
+        window/skia_glfw_window.h window/skia_glfw_window.cpp
+        window/skia_manager.h window/skia_manager.cpp)
 
 set(see_skia_src
         see_skia.h)
@@ -17,7 +18,7 @@ add_library(see_skia
         ${see_skia_graphics_src}
         ${see_skia_window_src}
         ${see_skia_src})
-target_link_libraries(see_skia PUBLIC see)
+target_link_libraries(see_skia PUBLIC see see_glfw)
 target_include_directories(see_skia PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>)
 
 find_package(PkgConfig REQUIRED)

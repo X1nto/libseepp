@@ -18,31 +18,20 @@
 
 #include "see/window/window.h"
 #include "see-skia/graphics/skia_canvas.h"
+#include "see-glfw/window/glfw_window.h"
+#include "skia_manager.h"
 
 namespace see::skia::window
 {
 
-class skia_glfw_window : public see::window::window
+class skia_glfw_window :
+        public see::glfw::glfw_window,
+        public see::skia::window::skia_manager
 {
-    GLFWwindow* window = nullptr;
-    GrDirectContext* gr_context = nullptr;
-    SkSurface* sk_surface = nullptr;
-
-    std::unique_ptr<see::skia::graphics::skia_canvas> canvas;
 public:
-    skia_glfw_window();
-    ~skia_glfw_window() override;
-
-    void run() override;
     void update() override;
-    void stop() override;
 protected:
     void render() override;
-private:
-    void init_sksurface(int width, int height);
-    static void on_window_resize(GLFWwindow* window, int width, int height);
-    static void on_framebuffer_resize(GLFWwindow* window, int width, int height);
-    static skia_glfw_window* get_this_ptr(GLFWwindow* window);
 };
 
 }
