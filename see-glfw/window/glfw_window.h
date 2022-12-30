@@ -21,6 +21,8 @@ public:
 
     void run() override;
     void stop() override;
+protected:
+    void render() override;
 private:
     static void on_window_resize(GLFWwindow* window, int width, int height);
     static void on_framebuffer_resize(GLFWwindow* window, int width, int height);

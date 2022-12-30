@@ -51,9 +51,13 @@ void glfw_window::run()
     {
         render();
 
-        glfwSwapBuffers(window);
         glfwPollEvents();
     }
+}
+
+void glfw_window::render()
+{
+    glfwSwapBuffers(window);
 }
 
 void glfw_window::stop()
@@ -64,22 +68,22 @@ void glfw_window::stop()
 void glfw_window::on_window_resize(GLFWwindow* window, int width, int height)
 {
     glfw_window* glwindow = get_this_ptr(window);
+
+    glwindow->size.width = width;
+    glwindow->size.height = height;
+
+    glwindow->update();
+}
+
+void glfw_window::on_framebuffer_resize(GLFWwindow* window, int width, int height)
+{
+    glfw_window* glwindow = get_this_ptr(window);
     glViewport(0, 0, width, height);
 
     glwindow->view->size.width = static_cast<float>(width);
     glwindow->view->size.height = static_cast<float>(height);
 
     glwindow->render();
-}
-
-void glfw_window::on_framebuffer_resize(GLFWwindow* window, int width, int height)
-{
-    glfw_window* glwindow = get_this_ptr(window);
-
-    glwindow->size.width = width;
-    glwindow->size.height = height;
-
-    glwindow->update();
 }
 
 glfw_window* glfw_window::get_this_ptr(GLFWwindow* window)

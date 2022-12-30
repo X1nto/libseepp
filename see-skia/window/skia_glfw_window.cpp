@@ -35,6 +35,8 @@ void skia_glfw_window::render()
         view->draw(*canvas, see::graphics::position {0, 0});
 
         flush();
+
+        glfw_window::render();
     }
 }
 

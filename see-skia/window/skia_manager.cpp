@@ -15,11 +15,13 @@ skia_manager::~skia_manager()
 
 void skia_manager::init_context(GrDirectContext* context)
 {
+    delete gr_context;
     gr_context = context;
 }
 
 void skia_manager::init_surface(GrBackendRenderTarget& renderTarget)
 {
+    delete sk_surface;
     SkColorType skColorType = kRGBA_8888_SkColorType;
     sk_surface = SkSurface::MakeFromBackendRenderTarget(
             gr_context,
