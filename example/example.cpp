@@ -48,12 +48,9 @@ int main()
     auto red = std::make_shared<rect_view>(see::graphics::color::RED);
     auto green = std::make_shared<rect_view>(see::graphics::color::GREEN);
     auto blue = std::make_shared<rect_view>(see::graphics::color::BLUE);
+    blue->size.width = see::layout::view_size::parent;
 
     (*row) << red << green << blue;
-    for (const auto& item: row->children)
-    {
-        item->size.width = see::layout::view_size::parent;
-    }
     for (int i = 0; i < 5; i++)
     {
         col->push_child(row);
