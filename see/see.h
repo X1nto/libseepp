@@ -5,6 +5,7 @@
 #include "foundation/box.h"
 #include "foundation/column.h"
 #include "foundation/row.h"
+#include "foundation/text.h"
 
 //graphics
 #include "graphics/color.h"

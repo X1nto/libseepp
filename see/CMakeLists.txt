@@ -17,7 +17,8 @@ set(see_graphics_src
 set(see_foundation_src
         foundation/column.h foundation/column.cpp
         foundation/row.h foundation/row.cpp
-        foundation/box.h foundation/box.cpp)
+        foundation/box.h foundation/box.cpp
+        foundation/text.h foundation/text.cpp)
 
 set(see_window_src
         window/window.h window/window.cpp

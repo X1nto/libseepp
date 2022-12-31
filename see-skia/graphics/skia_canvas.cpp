@@ -5,8 +5,12 @@
 #include "skia_canvas.h"
 #include "skia_color.h"
 
+#include <skia/include/core/SkTextBlob.h>
+
 namespace see::skia::graphics
 {
+
+skia_canvas::skia_canvas(SkCanvas& _canvas) : canvas(_canvas) {}
 
 void skia_canvas::draw_rect(const see::graphics::position& position,
                             const see::graphics::size& size,
@@ -52,7 +56,23 @@ void skia_canvas::draw_oval(const see::graphics::position& position,
     canvas.drawOval(oval, paint);
 }
 
-skia_canvas::skia_canvas(SkCanvas& _canvas) : canvas(_canvas) {}
+void skia_canvas::draw_text(const see::graphics::position& position,
+                            const std::string& text,
+                            float size,
+                            const see::graphics::color& color)
+{
+    SkFont font;
+    font.setSize(size);
+    SkPaint paint;
+    paint.setColor(skia_color(color));
+    canvas.drawSimpleText(
+            text.c_str(),
+            text.length(),
+            SkTextEncoding::kUTF8,
+            position.x, position.y + size,
+            font,
+            paint);
+}
 
 void skia_canvas::clear()
 {

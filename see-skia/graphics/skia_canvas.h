@@ -5,7 +5,6 @@
 #ifndef SEE_SKIA_GRAPHICS_CANVAS_H
 #define SEE_SKIA_GRAPHICS_CANVAS_H
 
-#include "skia/include/core/SkSurface.h"
 #include "skia/include/core/SkCanvas.h"
 
 #include "see/graphics/canvas.h"
@@ -37,6 +36,12 @@ public:
             float x_radius,
             float y_radius,
             const see::graphics::color &color) override;
+
+    void draw_text(
+            const see::graphics::position &position,
+            const std::string& text,
+            float size,
+            const see::graphics::color& color) override;
 
     void clear() override;
 };
