@@ -12,21 +12,25 @@ class rect_view : public see::layout::view
 public:
     explicit rect_view(const see::graphics::color& color) : _color(color) {};
 
-    void draw(
-            see::graphics::canvas &canvas,
-            const see::graphics::position &position) const override
+    void draw(see::graphics::canvas &canvas,
+              const see::graphics::position &position) const override
     {
         canvas.draw_rect(position, constrained_size, _color);
     }
 
     see::graphics::size measure_size() const override
     {
-        return see::graphics::size
-        {
+        return {
             .width = 100,
             .height = 50,
         };
     }
+};
+
+struct color_item
+{
+    std::string label;
+    see::graphics::color color;
 };
 
 int main()
@@ -38,22 +42,40 @@ int main()
     };
     window.title = "Skia See";
 
-    auto col = std::make_shared<see::foundation::column>();
-    col->spacing = 10;
     auto row = std::make_shared<see::foundation::row>();
     row->spacing = 10;
 
-    window.view->child = col;
+    window.view->child = row;
 
-    auto red = std::make_shared<rect_view>(see::graphics::color::RED);
-    auto green = std::make_shared<rect_view>(see::graphics::color::GREEN);
-    auto blue = std::make_shared<rect_view>(see::graphics::color::BLUE);
-    blue->size.width = see::layout::view_size::parent;
+    const std::vector<color_item> color_items {
+        color_item {
+            .label = "Red",
+            .color = see::graphics::color::RED,
+        },
+        color_item {
+            .label = "Green",
+            .color = see::graphics::color::GREEN,
+        },
+        color_item {
+            .label = "Blue",
+            .color = see::graphics::color::BLUE,
+        }
+    };
 
-    (*row) << red << green << blue;
-    for (int i = 0; i < 5; i++)
+    for (const color_item& color_item : color_items)
     {
-        col->push_child(row);
+        auto container = std::make_shared<see::foundation::column>();
+        container->spacing = 5;
+
+        auto rect = std::make_shared<rect_view>(color_item.color);
+        auto label = std::make_shared<see::foundation::text>();
+        label->color = color_item.color;
+        label->text = color_item.label;
+        label->size = 15;
+
+        *container << rect << label;
+
+        row->push_child(container);
     }
 
     window.run();
