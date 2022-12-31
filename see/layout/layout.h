@@ -39,6 +39,15 @@ constexpr multichild_layout& operator<<(multichild_layout& layout, const child_t
     return layout;
 }
 
+template<class View>
+constexpr std::shared_ptr<View>& operator<<(
+    std::shared_ptr<View>& layout_ptr,
+    const child_t& child)
+{
+    *layout_ptr << child;
+    return layout_ptr;
+}
+
 }
 
 

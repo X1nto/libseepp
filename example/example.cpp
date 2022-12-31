@@ -75,7 +75,7 @@ int main()
         label->text = color_item.label;
         label->size = 15;
 
-        *container << rect << label;
+        container << rect << label;
 
         row->push_child(container);
     }
