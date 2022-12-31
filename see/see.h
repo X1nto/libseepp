@@ -18,8 +18,8 @@
 #include "layout/view.h"
 #include "layout/layout.h"
 
-//window
-#include "window/window.h"
-#include "window/window_view.h"
+//windowing
+#include "windowing/window.h"
+#include "windowing/window_view.h"
 
 #endif //SEE_SEE_H

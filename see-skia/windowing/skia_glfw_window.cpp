@@ -4,7 +4,7 @@
 #include "skia_glfw_window.h"
 #include "see-skia/graphics/skia_canvas.h"
 
-namespace see::skia::window
+namespace see::skia::windowing
 {
 
 void skia_glfw_window::update()

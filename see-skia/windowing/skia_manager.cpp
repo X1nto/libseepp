@@ -4,7 +4,7 @@
 
 #include "skia_manager.h"
 
-namespace see::skia::window
+namespace see::skia::windowing
 {
 
 void skia_manager::init_context(GrDirectContext* context)

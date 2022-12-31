@@ -5,7 +5,7 @@
 #include "graphics/skia_canvas.h"
 #include "graphics/skia_color.h"
 
-//window
-#include "window/skia_glfw_window.h"
+//windowing
+#include "windowing/skia_glfw_window.h"
 
 #endif //SEE_SKIA_SEE_SKIA_H

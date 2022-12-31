@@ -2,14 +2,14 @@
 // Created by Xinto on 26.12.2022.
 //
 
-#ifndef SEE_WINDOW_WINDOW_H
-#define SEE_WINDOW_WINDOW_H
+#ifndef SEE_WINDOWING_WINDOW_H
+#define SEE_WINDOWING_WINDOW_H
 
 #include "see/layout/view.h"
 #include "see/graphics/size_int.h"
 #include "window_view.h"
 
-namespace see::window
+namespace see::windowing
 {
 
 class window
@@ -33,4 +33,4 @@ protected:
 
 }
 
-#endif //SEE_WINDOW_WINDOW_H
+#endif //SEE_WINDOWING_WINDOW_H

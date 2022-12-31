@@ -2,10 +2,13 @@
 // Created by Xinto on 28.12.2022.
 //
 
-#ifndef LIBSEEPP_WINDOW_VIEW_H
-#define LIBSEEPP_WINDOW_VIEW_H
+#ifndef SEE_WINDOWING_WINDOW_VIEW_H
+#define SEE_WINDOWING_WINDOW_VIEW_H
 
 #include "see/layout/layout.h"
+
+namespace see::windowing
+{
 
 class window_view : public see::layout::singlechild_layout
 {
@@ -16,4 +19,7 @@ public:
 };
 
 
-#endif //LIBSEEPP_WINDOW_VIEW_H
+}
+
+
+#endif //SEE_WINDOWING_WINDOW_VIEW_H

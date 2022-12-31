@@ -7,7 +7,7 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace see::glfw
+namespace see::glfw::windowing
 {
 
 glfw_window::glfw_window()
@@ -36,7 +36,7 @@ void glfw_window::run()
     window = glfwCreateWindow(size.width, size.height, title.c_str(), nullptr, nullptr);
     if (!window)
     {
-        throw std::runtime_error("Failed to create the GLFW window");
+        throw std::runtime_error("Failed to create the GLFW windowing");
     }
 
     glfwMakeContextCurrent(window);

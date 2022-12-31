@@ -20,9 +20,9 @@ set(see_foundation_src
         foundation/box.h foundation/box.cpp
         foundation/text.h foundation/text.cpp)
 
-set(see_window_src
-        window/window.h window/window.cpp
-        window/window_view.h window/window_view.cpp)
+set(see_windowing_src
+        windowing/window.h windowing/window.cpp
+        windowing/window_view.h windowing/window_view.cpp)
 
 set(see_src
         see.h)
@@ -31,6 +31,6 @@ add_library(see
         ${see_layout_src}
         ${see_graphics_src}
         ${see_foundation_src}
-        ${see_window_src}
+        ${see_windowing_src}
         ${see_src})
 target_include_directories(see PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>)

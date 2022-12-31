@@ -5,14 +5,14 @@
 #ifndef SEE_GLFW_GLFW_WINDOW_H
 #define SEE_GLFW_GLFW_WINDOW_H
 
-#include "see/window/window.h"
+#include "see/windowing/window.h"
 
 #include <GLFW/glfw3.h>
 
-namespace see::glfw
+namespace see::glfw::windowing
 {
 
-class glfw_window : public see::window::window
+class glfw_window : public see::windowing::window
 {
     GLFWwindow* window = nullptr;
 public:

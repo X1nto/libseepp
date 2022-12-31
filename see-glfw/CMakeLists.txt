@@ -3,8 +3,15 @@ project(see-glfw)
 
 set(CMAKE_CXX_STANDARD 20)
 
+set(see_glfw_windowing_src
+        windowing/glfw_window.h windowing/glfw_window.cpp)
+
+set(see_glfw_src
+        see_glfw.h)
+
 add_library(see_glfw
-        window/glfw_window.h window/glfw_window.cpp)
+        ${see_glfw_windowing_src}
+        ${see_glfw_src})
 target_link_libraries(see_glfw PUBLIC see)
 target_include_directories(see_glfw PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>)
 

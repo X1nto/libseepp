@@ -36,7 +36,7 @@ struct color_item
 
 int main()
 {
-    see::skia::window::skia_glfw_window window;
+    see::skia::windowing::skia_glfw_window window;
     window.size = {
         .width = 960,
         .height = 480,

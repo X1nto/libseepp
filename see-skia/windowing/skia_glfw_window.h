@@ -18,17 +18,17 @@
 
 #undef SK_GL
 
-#include "see/window/window.h"
+#include "see/windowing/window.h"
 #include "see-skia/graphics/skia_canvas.h"
-#include "see-glfw/window/glfw_window.h"
+#include "see-glfw/windowing/glfw_window.h"
 #include "skia_manager.h"
 
-namespace see::skia::window
+namespace see::skia::windowing
 {
 
 class skia_glfw_window :
-    public see::glfw::glfw_window,
-    public see::skia::window::skia_manager
+    public see::glfw::windowing::glfw_window,
+    public see::skia::windowing::skia_manager
 {
 public:
     void update() override;
