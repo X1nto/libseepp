@@ -20,22 +20,14 @@ namespace see::skia::window
 
 class skia_manager
 {
-    GrDirectContext* gr_context = nullptr;
-    SkSurface* sk_surface = nullptr;
 protected:
-    std::unique_ptr<see::skia::graphics::skia_canvas> canvas = nullptr;
-public:
-    ~skia_manager();
+    std::unique_ptr<SkSurface> sk_surface;
+    std::unique_ptr<GrDirectContext> gr_context;
+    std::unique_ptr<see::skia::graphics::skia_canvas> canvas;
 protected:
     void init_context(GrDirectContext* context);
     void init_surface(GrBackendRenderTarget& renderTarget);
     void init_canvas();
-
-    bool context_inited();
-    bool surface_inited();
-    bool canvas_inited();
-
-    void flush();
 };
 
 }

@@ -27,7 +27,6 @@ glfw_window::glfw_window()
 
 glfw_window::~glfw_window()
 {
-    glfwDestroyWindow(window);
     glfwTerminate();
 }
 

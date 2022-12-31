@@ -7,53 +7,26 @@
 namespace see::skia::window
 {
 
-skia_manager::~skia_manager()
-{
-    delete sk_surface;
-    delete gr_context;
-}
-
 void skia_manager::init_context(GrDirectContext* context)
 {
-    delete gr_context;
-    gr_context = context;
+    gr_context.reset(context);
 }
 
 void skia_manager::init_surface(GrBackendRenderTarget& renderTarget)
 {
-    delete sk_surface;
     SkColorType skColorType = kRGBA_8888_SkColorType;
-    sk_surface = SkSurface::MakeFromBackendRenderTarget(
-            gr_context,
+    SkSurface* p_sksurface = SkSurface::MakeFromBackendRenderTarget(
+            gr_context.get(),
             renderTarget,
             kBottomLeft_GrSurfaceOrigin,
             skColorType,
             nullptr, nullptr).release();
+    sk_surface.reset(p_sksurface);
 }
 
 void skia_manager::init_canvas()
 {
     canvas = std::make_unique<see::skia::graphics::skia_canvas>(*(sk_surface->getCanvas()));
-}
-
-bool skia_manager::context_inited()
-{
-    return gr_context != nullptr;
-}
-
-bool skia_manager::surface_inited()
-{
-    return sk_surface != nullptr;
-}
-
-bool skia_manager::canvas_inited()
-{
-    return canvas != nullptr;
-}
-
-void skia_manager::flush()
-{
-    gr_context->flush();
 }
 
 }

@@ -30,6 +30,7 @@ class skia_glfw_window :
 {
 public:
     void update() override;
+    void stop() override;
 protected:
     void render() override;
 };

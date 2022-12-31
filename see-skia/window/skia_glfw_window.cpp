@@ -9,7 +9,7 @@ namespace see::skia::window
 
 void skia_glfw_window::update()
 {
-    if (!context_inited())
+    if (!gr_context)
     {
         sk_sp<const GrGLInterface> interface = GrGLMakeNativeInterface();
         GrDirectContext* context = GrDirectContext::MakeGL(interface).release();
@@ -27,17 +27,25 @@ void skia_glfw_window::update()
 
 void skia_glfw_window::render()
 {
-    if (canvas_inited())
+    if (canvas)
     {
         canvas->clear();
 
         view->update();
         view->draw(*canvas, see::graphics::position {0, 0});
 
-        flush();
+        gr_context->flush();
 
         glfw_window::render();
     }
+}
+
+void skia_glfw_window::stop()
+{
+    canvas.reset();
+    sk_surface.reset();
+    gr_context.reset();
+    glfw_window::stop();
 }
 
 }
