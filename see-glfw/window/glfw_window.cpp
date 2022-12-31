@@ -16,9 +16,10 @@ glfw_window::glfw_window()
     {
         throw std::runtime_error("Failed to initialize GLFW");
     }
-    glfwSetErrorCallback([](int code, const char *c){
-        std::cout << "GLFW Error: " << code << ", " << c;
-    });
+    glfwSetErrorCallback([](int code, const char* c)
+                         {
+                             std::cout << "GLFW Error: " << code << ", " << c;
+                         });
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);

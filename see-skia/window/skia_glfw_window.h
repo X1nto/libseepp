@@ -8,12 +8,14 @@
 #include <glfw/glfw3.h>
 
 #define SK_GL
+
 #include <skia/include/gpu/GrBackendSurface.h>
 #include <skia/include/gpu/GrDirectContext.h>
 #include <skia/include/gpu/gl/GrGLInterface.h>
 #include <skia/include/core/SkCanvas.h>
 #include <skia/include/core/SkColorSpace.h>
 #include <skia/include/core/SkSurface.h>
+
 #undef SK_GL
 
 #include "see/window/window.h"
@@ -25,12 +27,14 @@ namespace see::skia::window
 {
 
 class skia_glfw_window :
-        public see::glfw::glfw_window,
-        public see::skia::window::skia_manager
+    public see::glfw::glfw_window,
+    public see::skia::window::skia_manager
 {
 public:
     void update() override;
+
     void stop() override;
+
 protected:
     void render() override;
 };

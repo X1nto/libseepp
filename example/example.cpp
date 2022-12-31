@@ -10,10 +10,11 @@ class rect_view : public see::layout::view
 {
     const see::graphics::color& _color;
 public:
-    explicit rect_view(const see::graphics::color& color) : _color(color) {};
+    explicit rect_view(const see::graphics::color& color) : _color(color)
+    {};
 
-    void draw(see::graphics::canvas &canvas,
-              const see::graphics::position &position) const override
+    void draw(see::graphics::canvas& canvas,
+              const see::graphics::position& position) const override
     {
         canvas.draw_rect(position, constrained_size, _color);
     }
@@ -47,22 +48,22 @@ int main()
 
     window.view->child = row;
 
-    const std::vector<color_item> color_items {
-        color_item {
+    const std::vector<color_item> color_items{
+        color_item{
             .label = "Red",
             .color = see::graphics::color::RED,
         },
-        color_item {
+        color_item{
             .label = "Green",
             .color = see::graphics::color::GREEN,
         },
-        color_item {
+        color_item{
             .label = "Blue",
             .color = see::graphics::color::BLUE,
         }
     };
 
-    for (const color_item& color_item : color_items)
+    for (const color_item& color_item: color_items)
     {
         auto container = std::make_shared<see::foundation::column>();
         container->spacing = 5;

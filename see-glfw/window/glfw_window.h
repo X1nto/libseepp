@@ -17,15 +17,21 @@ class glfw_window : public see::window::window
     GLFWwindow* window = nullptr;
 public:
     glfw_window();
+
     ~glfw_window() override;
 
     void run() override;
+
     void stop() override;
+
 protected:
     void render() override;
+
 private:
     static void on_window_resize(GLFWwindow* window, int width, int height);
+
     static void on_framebuffer_resize(GLFWwindow* window, int width, int height);
+
     static glfw_window* get_this_ptr(GLFWwindow* window);
 };
 

@@ -15,7 +15,7 @@ graphics::size view::constrain_size() const
     const bool is_width_self = size.width == view_size::self;
     const bool is_height_self = size.height == view_size::self;
 
-    graphics::size size_params {
+    graphics::size size_params{
         .width = size.width,
         .height = size.height
     };

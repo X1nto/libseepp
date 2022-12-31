@@ -16,7 +16,7 @@ void skia_glfw_window::update()
         init_context(context);
     }
 
-    GrGLFramebufferInfo framebufferInfo {
+    GrGLFramebufferInfo framebufferInfo{
         .fFBOID = 0,
         .fFormat = GL_RGBA8
     };
@@ -32,7 +32,7 @@ void skia_glfw_window::render()
         canvas->clear();
 
         view->update();
-        view->draw(*canvas, see::graphics::position {0, 0});
+        view->draw(*canvas, see::graphics::position{0, 0});
 
         gr_context->flush();
 

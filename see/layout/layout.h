@@ -6,6 +6,7 @@
 #define SEE_LAYOUT_LAYOUT_H
 
 #include "view.h"
+
 namespace see::layout
 {
 

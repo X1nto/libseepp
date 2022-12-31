@@ -16,11 +16,11 @@ void skia_manager::init_surface(GrBackendRenderTarget& renderTarget)
 {
     SkColorType skColorType = kRGBA_8888_SkColorType;
     SkSurface* p_sksurface = SkSurface::MakeFromBackendRenderTarget(
-            gr_context.get(),
-            renderTarget,
-            kBottomLeft_GrSurfaceOrigin,
-            skColorType,
-            nullptr, nullptr).release();
+        gr_context.get(),
+        renderTarget,
+        kBottomLeft_GrSurfaceOrigin,
+        skColorType,
+        nullptr, nullptr).release();
     sk_surface.reset(p_sksurface);
 }
 

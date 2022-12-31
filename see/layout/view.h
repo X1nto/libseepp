@@ -25,11 +25,11 @@ class layout;
 class view
 {
 protected:
-    graphics::size measured_size {};
-    graphics::size constrained_size {};
+    graphics::size measured_size{};
+    graphics::size constrained_size{};
 public:
     std::shared_ptr<layout> parent = nullptr;
-    view_size size {
+    view_size size{
         view_size::self,
         view_size::self
     };
@@ -37,15 +37,17 @@ public:
     virtual ~view() = default;
 
     virtual void draw(
-            graphics::canvas& canvas,
-            const graphics::position& position) const = 0;
+        graphics::canvas& canvas,
+        const graphics::position& position) const = 0;
 
     virtual graphics::size measure_size() const = 0;
+
     virtual graphics::size constrain_size() const;
 
     virtual void update();
 
     graphics::size get_measured_size() const;
+
     graphics::size get_constrained_size() const;
 };
 
@@ -55,7 +57,8 @@ using children_t = std::vector<child_t>;
 class layout : public view, public std::enable_shared_from_this<layout>
 {
 public:
-    std::shared_ptr<layout> this_parent() {
+    std::shared_ptr<layout> this_parent()
+    {
         return shared_from_this();
     }
 };

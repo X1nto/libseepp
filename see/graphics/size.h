@@ -14,28 +14,28 @@ struct size
     float height;
 };
 
-constexpr size &operator+=(size &lhs, size &rhs)
+constexpr size& operator+=(size& lhs, size& rhs)
 {
     lhs.width += rhs.width;
     lhs.height += rhs.height;
     return lhs;
 }
 
-constexpr size &operator-=(size &lhs, size &rhs)
+constexpr size& operator-=(size& lhs, size& rhs)
 {
     lhs.width -= rhs.width;
     lhs.height -= rhs.height;
     return lhs;
 }
 
-constexpr size operator+(size &lhs, size &rhs)
+constexpr size operator+(size& lhs, size& rhs)
 {
     size new_size = lhs;
     new_size += rhs;
     return new_size;
 }
 
-constexpr size operator-(size &lhs, size &rhs)
+constexpr size operator-(size& lhs, size& rhs)
 {
     size new_size = lhs;
     new_size -= rhs;

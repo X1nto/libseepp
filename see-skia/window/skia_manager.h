@@ -26,7 +26,9 @@ protected:
     std::unique_ptr<see::skia::graphics::skia_canvas> canvas;
 protected:
     void init_context(GrDirectContext* context);
+
     void init_surface(GrBackendRenderTarget& renderTarget);
+
     void init_canvas();
 };
 

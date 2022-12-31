@@ -21,7 +21,7 @@ void singlechild_layout::update()
 void multichild_layout::update()
 {
     view::update();
-    for (const child_t& child : children)
+    for (const child_t& child: children)
     {
         child->update();
         child->parent = this_parent();

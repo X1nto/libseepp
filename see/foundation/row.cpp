@@ -10,7 +10,7 @@ namespace see::foundation
 void row::draw(graphics::canvas& canvas, const graphics::position& position) const
 {
     graphics::position pos = position;
-    for (const see::layout::child_t& child : children)
+    for (const see::layout::child_t& child: children)
     {
         const graphics::size measured = child->get_measured_size();
         child->draw(canvas, pos);
@@ -20,7 +20,7 @@ void row::draw(graphics::canvas& canvas, const graphics::position& position) con
 
 graphics::size row::measure_size() const
 {
-    graphics::size largest {};
+    graphics::size largest{};
 
     for (int i = 0; i < children.size(); i++)
     {

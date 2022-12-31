@@ -14,28 +14,28 @@ struct size_int
     int height;
 };
 
-constexpr size_int &operator+=(size_int &lhs, size_int &rhs)
+constexpr size_int& operator+=(size_int& lhs, size_int& rhs)
 {
     lhs.width += rhs.width;
     lhs.height += rhs.height;
     return lhs;
 }
 
-constexpr size_int &operator-=(size_int &lhs, size_int &rhs)
+constexpr size_int& operator-=(size_int& lhs, size_int& rhs)
 {
     lhs.width -= rhs.width;
     lhs.height -= rhs.height;
     return lhs;
 }
 
-constexpr size_int operator+(size_int &lhs, size_int &rhs)
+constexpr size_int operator+(size_int& lhs, size_int& rhs)
 {
     size_int new_size = lhs;
     new_size += rhs;
     return new_size;
 }
 
-constexpr size_int operator-(size_int &lhs, size_int &rhs)
+constexpr size_int operator-(size_int& lhs, size_int& rhs)
 {
     size_int new_size = lhs;
     new_size -= rhs;
