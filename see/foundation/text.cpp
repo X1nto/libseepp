@@ -13,7 +13,7 @@ void see::foundation::text::draw(see::graphics::canvas& canvas,
 see::graphics::size see::foundation::text::measure_size() const
 {
     return {
-        .width = size * static_cast<float>(text.length()),
+        .width = (size / 2) * static_cast<float>(text.length()),
         .height = size
     };
 }
