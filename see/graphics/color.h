@@ -14,10 +14,6 @@ struct color
 {
     uint32_t value;
 
-    static const color RED;
-    static const color GREEN;
-    static const color BLUE;
-
     explicit constexpr color(uint32_t colorint) : value(colorint)
     {}
 
@@ -52,6 +48,29 @@ struct color
         return value & 0xFF;
     }
 };
+
+inline namespace colors
+{
+
+static const constexpr color TRANSPARENT = color(0x00000000);
+
+static const constexpr color BLACK = color(0x000000FF);
+static const constexpr color DARK_GRAY = color(0x444444FF);
+static const constexpr color GRAY = color(0x888888FF);
+static const constexpr color LIGHT_GRAY = color(0xCCCCCCFF);
+static const constexpr color WHITE = color(0xFFFFFFFF);
+
+static const constexpr color RED = color(0xFF0000FF);
+static const constexpr color ORANGE = color(0xFFA500FF);
+static const constexpr color YELLOW = color(0xFFFF00FF);
+static const constexpr color GREEN = color(0x00FF00FF);
+static const constexpr color CYAN = color(0x00FFFFFF);
+static const constexpr color LIGHT_BLUE = color(0xADD8E6FF);
+static const constexpr color BLUE = color(0x0000FFFF);
+static const constexpr color MAGENTA = color(0xFF00FFFF);
+static const constexpr color PURPLE = color(0xA020F0FF);
+
+}
 
 }
 

@@ -51,15 +51,15 @@ int main()
     const std::vector<color_item> color_items{
         color_item{
             .label = "Red",
-            .color = see::graphics::color::RED,
+            .color = see::graphics::colors::RED,
         },
         color_item{
             .label = "Green",
-            .color = see::graphics::color::GREEN,
+            .color = see::graphics::colors::GREEN,
         },
         color_item{
             .label = "Blue",
-            .color = see::graphics::color::BLUE,
+            .color = see::graphics::colors::BLUE,
         }
     };
 
