@@ -9,11 +9,18 @@
 
 namespace see::foundation
 {
+enum class row_alignment
+{
+    top,
+    center,
+    bottom
+};
 
 class row : public layout::multichild_layout
 {
 public:
     float spacing = 0;
+    row_alignment children_alignment = row_alignment::top;
 
     graphics::size measure_size() const override;
 

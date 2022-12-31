@@ -10,10 +10,18 @@
 namespace see::foundation
 {
 
+enum class column_alignment
+{
+    start,
+    center,
+    end
+};
+
 class column : public layout::multichild_layout
 {
 public:
     float spacing = 0;
+    column_alignment children_alignment = column_alignment::start;
 
     graphics::size measure_size() const override;
 

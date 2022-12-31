@@ -12,9 +12,28 @@ void row::draw(graphics::canvas& canvas, const graphics::position& position) con
     graphics::position pos = position;
     for (const see::layout::child_t& child: children)
     {
-        const graphics::size measured = child->get_measured_size();
-        child->draw(canvas, pos);
-        pos.x += measured.width + spacing;
+        const graphics::size measured_child = child->get_measured_size();
+        switch(children_alignment)
+        {
+            case row_alignment::top:
+                child->draw(canvas, pos);
+                break;
+            case row_alignment::center:
+            {
+                graphics::position center_pos = pos;
+                center_pos.y += (measured_size.height - measured_child.height) / 2;
+                child->draw(canvas, center_pos);
+                break;
+            }
+            case row_alignment::bottom:
+            {
+                graphics::position end_pos = pos;
+                end_pos.y += measured_size.height - measured_child.height;
+                child->draw(canvas, end_pos);
+                break;
+            }
+        }
+        pos.x += measured_child.width + spacing;
     }
 }
 

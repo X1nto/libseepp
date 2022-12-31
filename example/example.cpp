@@ -63,10 +63,11 @@ int main()
         }
     };
 
-    for (const color_item& color_item: color_items)
+    for (const color_item& color_item : color_items)
     {
         auto container = std::make_shared<see::foundation::column>();
         container->spacing = 5;
+        container->children_alignment = see::foundation::column_alignment::center;
 
         auto rect = std::make_shared<rect_view>(color_item.color);
         auto label = std::make_shared<see::foundation::text>();
