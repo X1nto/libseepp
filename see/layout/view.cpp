@@ -7,6 +7,7 @@
 namespace see::layout
 {
 
+//FIXME fix constraint measurement for layouts
 graphics::size view::constrain_size() const
 {
     const bool is_width_parent = size.width == view_size::parent;

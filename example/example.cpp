@@ -43,10 +43,10 @@ int main()
     };
     window.title = "Skia See";
 
-    auto row = std::make_shared<see::foundation::row>();
-    row->spacing = 10;
+    auto main_col = std::make_shared<see::foundation::column>();
+    main_col->spacing = 25 + 20; //account for the bug in constraint measurement
 
-    window.view->child = row;
+    window.view->child = main_col;
 
     const std::vector<color_item> color_items{
         color_item{
@@ -63,6 +63,9 @@ int main()
         }
     };
 
+    auto rgb_boxes_row = std::make_shared<see::foundation::row>();
+    rgb_boxes_row->spacing = 10;
+
     for (const color_item& color_item : color_items)
     {
         auto container = std::make_shared<see::foundation::column>();
@@ -77,8 +80,28 @@ int main()
 
         container << rect << label;
 
-        row->push_child(container);
+        rgb_boxes_row->push_child(container);
     }
+
+    auto rgb_box = std::make_shared<see::foundation::box>();
+    rgb_box->children_alignment = see::foundation::box_alignment::center;
+
+    auto red_rect = std::make_shared<rect_view>(see::graphics::colors::RED);
+    red_rect->size = {
+        100, 100
+    };
+    auto green_rect = std::make_shared<rect_view>(see::graphics::colors::GREEN);
+    green_rect->size = {
+        75, 75
+    };
+    auto blue_rect = std::make_shared<rect_view>(see::graphics::colors::BLUE);
+    blue_rect->size = {
+        50, 50
+    };
+
+    rgb_box << red_rect << green_rect << blue_rect;
+
+    main_col << rgb_boxes_row << rgb_box;
 
     window.run();
     window.stop();

@@ -7,6 +7,9 @@
 
 #include "see/layout/layout.h"
 
+namespace see::foundation
+{
+
 enum class box_alignment
 {
     top_start,
@@ -23,12 +26,12 @@ enum class box_alignment
 class box : public see::layout::multichild_layout
 {
 public:
-    box_alignment alignment = box_alignment::top_start;
-
-    void draw(see::graphics::canvas& canvas, const see::graphics::position& position) const override;
+    box_alignment children_alignment = box_alignment::top_start;
 
     see::graphics::size measure_size() const override;
+    std::vector<see::graphics::position> place_children() const override;
 };
 
+}
 
 #endif //SEE_FOUNDATION_BOX_H
