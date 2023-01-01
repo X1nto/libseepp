@@ -38,12 +38,12 @@ void view::update()
     constrained_size = constrain_size();
 }
 
-graphics::size view::get_measured_size() const
+const graphics::size& view::get_measured_size() const
 {
     return measured_size;
 }
 
-graphics::size view::get_constrained_size() const
+const graphics::size& view::get_constrained_size() const
 {
     return constrained_size;
 }

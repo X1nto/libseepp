@@ -46,9 +46,9 @@ public:
 
     virtual void update();
 
-    graphics::size get_measured_size() const;
+    const graphics::size& get_measured_size() const;
 
-    graphics::size get_constrained_size() const;
+    const graphics::size& get_constrained_size() const;
 };
 
 using child_t = std::shared_ptr<view>;

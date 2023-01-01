@@ -24,7 +24,7 @@ public:
 
     graphics::size measure_size() const override;
 
-    void draw(graphics::canvas& canvas, const graphics::position& position) const override;
+    std::vector<see::graphics::position> place_children() const override;
 };
 
 }

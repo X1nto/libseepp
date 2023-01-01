@@ -22,10 +22,18 @@ public:
 
 class multichild_layout : public layout
 {
+protected:
+    std::vector<see::graphics::position> children_placement;
 public:
     children_t children;
 
+    void draw(graphics::canvas& canvas, const graphics::position& position) const override;
+
+    virtual std::vector<see::graphics::position> place_children() const = 0;
+
     void update() override;
+
+    const std::vector<see::graphics::position>& get_children_placement() const;
 
     constexpr void push_child(const child_t& child)
     {

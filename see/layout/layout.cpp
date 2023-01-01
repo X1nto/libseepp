@@ -18,14 +18,32 @@ void singlechild_layout::update()
     child->parent = this_parent();
 }
 
+void multichild_layout::draw(graphics::canvas& canvas, const graphics::position& position) const
+{
+    for (int i = 0; i < children.size(); i++)
+    {
+        const child_t& child = children[i];
+        const see::graphics::position& child_pos = children_placement[i];
+
+        child->draw(canvas, position + child_pos);
+    }
+}
+
 void multichild_layout::update()
 {
-    view::update();
     for (const child_t& child: children)
     {
         child->update();
         child->parent = this_parent();
     }
+    view::update();
+    children_placement = place_children();
 }
+
+const std::vector<see::graphics::position>& multichild_layout::get_children_placement() const
+{
+    return children_placement;
+}
+
 
 }
