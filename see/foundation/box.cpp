@@ -30,7 +30,7 @@ std::vector<see::graphics::position> box::place_children() const
 
     for (const see::layout::child_t& child : children)
     {
-        const see::graphics::size& child_measured_size = child->make_constrained_size();
+        const see::graphics::size& child_measured_size = child->get_constrained_size();
 
         constexpr float top = 0;
         constexpr float start = 0;

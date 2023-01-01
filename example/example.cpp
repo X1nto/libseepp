@@ -16,7 +16,7 @@ public:
     void draw(see::graphics::canvas& canvas,
               const see::graphics::position& position) const override
     {
-        canvas.draw_rect(position, make_constrained_size(), _color);
+        canvas.draw_rect(position, get_constrained_size(), _color);
     }
 
     see::graphics::size measure_size() const override

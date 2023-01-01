@@ -49,7 +49,7 @@ public:
 
     const graphics::size& get_compliant_size() const;
 
-    graphics::size make_constrained_size() const;
+    graphics::size get_constrained_size() const;
 };
 
 using child_t = std::shared_ptr<view>;

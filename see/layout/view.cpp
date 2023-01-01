@@ -18,7 +18,7 @@ const graphics::size& view::get_measured_size() const
     return measured_size;
 }
 
-graphics::size view::make_constrained_size() const
+graphics::size view::get_constrained_size() const
 {
     graphics::size constrained_size = get_compliant_size();
 
