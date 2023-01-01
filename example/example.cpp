@@ -92,11 +92,11 @@ int main()
     };
     auto green_rect = std::make_shared<rect_view>(see::graphics::colors::GREEN);
     green_rect->size = {
-        75, 75
+        75, see::layout::view_size::parent
     };
     auto blue_rect = std::make_shared<rect_view>(see::graphics::colors::BLUE);
     blue_rect->size = {
-        50, 50
+        see::layout::view_size::parent, 50
     };
 
     rgb_box << red_rect << green_rect << blue_rect;
