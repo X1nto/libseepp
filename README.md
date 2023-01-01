@@ -14,7 +14,7 @@ need of ever touching XML, XAML, HTML or any other markup language.
 
 # Why is it named See++?
 
-Because it sounds like C, and it's a graphics library. That's it, that's the reason.
+Because it sounds like C++, and it lets you see graphics. That's it, that's the reason.
 
 # See in action
 
