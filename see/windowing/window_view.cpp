@@ -12,7 +12,7 @@ see::graphics::size window_view::measure_size() const
     return size;
 }
 
-see::graphics::size window_view::constrain_size() const
+see::graphics::size window_view::comply_size() const
 {
     return size;
 }

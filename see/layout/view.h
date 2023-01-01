@@ -26,7 +26,7 @@ class view
 {
 protected:
     graphics::size measured_size{};
-    graphics::size constrained_size{};
+    graphics::size compliant_size{};
 public:
     std::shared_ptr<layout> parent = nullptr;
     view_size size{
@@ -41,14 +41,15 @@ public:
         const graphics::position& position) const = 0;
 
     virtual graphics::size measure_size() const = 0;
-
-    virtual graphics::size constrain_size() const;
+    virtual graphics::size comply_size() const;
 
     virtual void update();
 
     const graphics::size& get_measured_size() const;
 
-    const graphics::size& get_constrained_size() const;
+    const graphics::size& get_compliant_size() const;
+
+    graphics::size make_constrained_size() const;
 };
 
 using child_t = std::shared_ptr<view>;

@@ -13,7 +13,7 @@ graphics::size row::measure_size() const
 
     for (int i = 0; i < children.size(); i++)
     {
-        const graphics::size& measured = children[i]->get_measured_size();
+        const graphics::size& measured = children[i]->get_compliant_size();
 
         if (i != 0)
         {

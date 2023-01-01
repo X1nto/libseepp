@@ -7,36 +7,10 @@
 namespace see::layout
 {
 
-//FIXME fix constraint measurement for layouts
-graphics::size view::constrain_size() const
-{
-    const bool is_width_parent = size.width == view_size::parent;
-    const bool is_height_parent = size.height == view_size::parent;
-
-    const bool is_width_self = size.width == view_size::self;
-    const bool is_height_self = size.height == view_size::self;
-
-    graphics::size size_params{
-        .width = size.width,
-        .height = size.height
-    };
-    if ((is_width_parent || is_height_parent) && parent)
-    {
-        graphics::size parent_size = parent->get_constrained_size();
-        if (is_width_parent) size_params.width = parent_size.width;
-        if (is_height_parent) size_params.height = parent_size.height;
-    }
-
-    if (is_width_self) size_params.width = measured_size.width;
-    if (is_height_self) size_params.height = measured_size.height;
-
-    return size_params;
-}
-
 void view::update()
 {
     measured_size = measure_size();
-    constrained_size = constrain_size();
+    compliant_size = comply_size();
 }
 
 const graphics::size& view::get_measured_size() const
@@ -44,9 +18,38 @@ const graphics::size& view::get_measured_size() const
     return measured_size;
 }
 
-const graphics::size& view::get_constrained_size() const
+graphics::size view::make_constrained_size() const
 {
+    graphics::size constrained_size = get_compliant_size();
+
+    if (parent)
+    {
+        const graphics::size& parent_measured_size = parent->get_measured_size();
+
+        if (size.width == view_size::parent)
+            constrained_size.width = parent_measured_size.width;
+        if (size.height == view_size::parent)
+            constrained_size.height = parent_measured_size.height;
+    }
+
     return constrained_size;
+}
+
+const graphics::size& view::get_compliant_size() const
+{
+    return compliant_size;
+}
+
+graphics::size view::comply_size() const
+{
+    graphics::size compl_size = size;
+
+    if (size.width == view_size::self)
+        compl_size.width = measured_size.width;
+    if (size.height == view_size::self)
+        compl_size.height = measured_size.height;
+
+    return compl_size;
 }
 
 

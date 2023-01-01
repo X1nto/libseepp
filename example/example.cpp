@@ -16,7 +16,7 @@ public:
     void draw(see::graphics::canvas& canvas,
               const see::graphics::position& position) const override
     {
-        canvas.draw_rect(position, constrained_size, _color);
+        canvas.draw_rect(position, make_constrained_size(), _color);
     }
 
     see::graphics::size measure_size() const override
@@ -44,7 +44,7 @@ int main()
     window.title = "Skia See";
 
     auto main_col = std::make_shared<see::foundation::column>();
-    main_col->spacing = 25 + 20; //account for the bug in constraint measurement
+    main_col->spacing = 20;
 
     window.view->child = main_col;
 
