@@ -13,20 +13,20 @@ graphics::size row::measure_size() const
 
     for (int i = 0; i < children.size(); i++)
     {
-        const graphics::size& measured = children[i]->get_compliant_size();
+        const graphics::size& child_size = children[i]->get_compliant_size();
 
-        if (measured.width != 0)
+        if (child_size.width != 0)
         {
             if (i != 0)
             {
                 size.width += spacing;
             }
-            size.width += measured.width;
+            size.width += child_size.width;
         }
 
-        if (measured.height > size.height)
+        if (child_size.height > size.height)
         {
-            size.height = measured.height;
+            size.height = child_size.height;
         }
     }
 
@@ -41,7 +41,7 @@ std::vector<see::graphics::position> row::place_children() const
     for (int i = 0; i < children.size(); i++)
     {
         const see::layout::child_t& child = children[i];
-        const graphics::size& measured_child = child->get_constrained_size();
+        const graphics::size& child_size = child->get_constrained_size();
 
         if (i != 0)
         {
@@ -53,16 +53,16 @@ std::vector<see::graphics::position> row::place_children() const
             case row_alignment::top:
                 break;
             case row_alignment::center:
-                pos.y = (measured_size.height - measured_child.height) / 2;
+                pos.y = (constrained_size.height - child_size.height) / 2;
                 break;
             case row_alignment::bottom:
-                pos.y = measured_size.height - measured_child.height;
+                pos.y = constrained_size.height - child_size.height;
                 break;
         }
 
         positions.push_back(pos);
 
-        pos.x += measured_child.width;
+        pos.x += child_size.width;
     }
 
     return positions;
