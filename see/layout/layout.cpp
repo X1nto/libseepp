@@ -31,10 +31,10 @@ void multichild_layout::draw(graphics::canvas& canvas, const graphics::position&
 
 void multichild_layout::update()
 {
-    for (const child_t& child: children)
+    for (const child_t& child : children)
     {
-        child->update();
         child->parent = this_parent();
+        child->update();
     }
     view::update();
     children_placement = place_children();

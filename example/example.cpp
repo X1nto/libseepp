@@ -5,6 +5,7 @@
 #include "see/see.h"
 #include "see-skia/see_skia.h"
 #include <memory>
+#include <iostream>
 
 class rect_view : public see::layout::view
 {
@@ -16,7 +17,7 @@ public:
     void draw(see::graphics::canvas& canvas,
               const see::graphics::position& position) const override
     {
-        canvas.draw_rect(position, get_constrained_size(), _color);
+        canvas.draw_rect(position, constrained_size, _color);
     }
 
     see::graphics::size measure_size() const override
@@ -82,6 +83,14 @@ int main()
 
         rgb_boxes_row->push_child(container);
     }
+
+    auto parent_rect = std::make_shared<rect_view>(see::graphics::colors::ORANGE);
+    parent_rect->size = {
+        see::layout::view_size::parent,
+        see::layout::view_size::parent,
+    };
+
+    rgb_boxes_row << parent_rect;
 
     auto rgb_box = std::make_shared<see::foundation::box>();
     rgb_box->children_alignment = see::foundation::box_alignment::center;

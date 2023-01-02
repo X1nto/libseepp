@@ -15,11 +15,14 @@ graphics::size column::measure_size() const
     {
         const graphics::size& measured = children[i]->get_compliant_size();
 
-        if (i != 0)
+        if (measured.height != 0)
         {
-            size.height += spacing;
+            if (i != 0)
+            {
+                size.height += spacing;
+            }
+            size.height += measured.height;
         }
-        size.height += measured.height;
 
         if (measured.width > size.width)
         {
@@ -38,7 +41,7 @@ std::vector<see::graphics::position> column::place_children() const
     for (int i = 0; i < children.size(); i++)
     {
         const see::layout::child_t& child = children[i];
-        const graphics::size& measured_child = child->get_measured_size();
+        const graphics::size& measured_child = child->get_constrained_size();
 
         if (i != 0)
         {
